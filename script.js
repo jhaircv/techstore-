@@ -250,4 +250,3 @@ window.addEventListener('scroll', function() {
 function scrollToLogo() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
