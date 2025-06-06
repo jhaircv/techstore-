@@ -1,0 +1,100 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda - Inicio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="loginForm" class="auth-section">
+    <div class="container">
+      <h2 class="techstore-title">TechStore+</h2>
+      <form class="form-container" onsubmit="login(); return false;">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="loginUser" placeholder="Usuario" required />
+        <input type="password" id="loginPass" placeholder="Contraseña" required />
+        <select id="loginRole">
+          <option value="cliente">Cliente</option>
+          <option value="admin">Administrador</option>
+        </select>
+        <button type="submit">Ingresar</button>
+        <p>¿No tienes cuenta? <a href="#" onclick="toggleForms()">Crear una</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Registro -->
+  <div id="signupForm" class="auth-section hidden">
+    <div class="container">
+      <h1>Crear Cuenta</h1>
+      <form class="form-container" onsubmit="signup(); return false;">
+        <input type="text" id="newUser" placeholder="Nuevo usuario" required />
+        <input type="password" id="newPass" placeholder="Contraseña" required />
+        <select id="newRole">
+          <option value="cliente">Cliente</option>
+          <option value="admin">Administrador</option>
+        </select>
+        <button type="submit">Registrarse</button>
+        <p>¿Ya tienes cuenta? <a href="#" onclick="toggleForms()">Iniciar sesión</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Seccion productos -->
+  <div id="productSection" class="hidden product-layout">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <h2 class="techstore-title">TechStore+</h2>
+      <button onclick="filtrarPorCategoria('Laptop')">Laptops</button>
+      <button onclick="filtrarPorCategoria('Auriculares')">Auriculares</button>
+      <button onclick="filtrarPorCategoria('Smartphone')">Smartphones</button>
+      <button onclick="filtrarPorCategoria('Monitores')">Monitores</button>
+      <button onclick="filtrarPorCategoria('Mouse')">Mouse</button>
+      <button onclick="filtrarPorCategoria('Teclado')">Teclados</button>
+      <button onclick="filtrarPorCategoria('')">Todos</button>
+    </aside>
+
+    <button id="btnScrollTop" title="Ir arriba" onclick="scrollToLogo()" style="display:none;">
+      &#8679;
+    </button>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="searchProduct()" />
+        <button onclick="searchProduct()">Buscar</button>
+      </div>
+      <div id="searchResults" class="product-grid"></div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  // Mostrar todos los productos al cargar la sección de productos
+  document.addEventListener('DOMContentLoaded', function() {
+    // Si la sección de productos está visible, mostrar todos los productos
+    if (!document.getElementById('productSection').classList.contains('hidden')) {
+      filtrarPorCategoria('');
+    }
+  });
+
+  function mostrarProductosAlIniciar() {
+    filtrarPorCategoria('');
+  }
+</script>
+
+<!-- Modal para detalles de producto -->
+<div id="modalProducto" class="modal-producto">
+  <div class="modal-contenido">
+    <span class="modal-cerrar" onclick="cerrarModalProducto()">&times;</span>
+    <div id="modalImgGrandeContainer"></div> <!-- Contenedor para la imagen grande -->
+    <div id="modalGaleria" class="modal-galeria"></div>
+    <h2 id="modalNombre"></h2>
+    <p id="modalCategoria"></p>
+    <div id="modalDescripcion"></div>
+  </div>
+</div>
+</body>
+</html>
