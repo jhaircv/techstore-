@@ -441,6 +441,22 @@ h2 {
   color: #00e6ff;
   cursor: pointer;
 }
+
+.modal-cerrar:hover {
+  color: #ff5252;
+  transform: scale(1.2);
+  transition: color 0.2s, transform 0.2s;
+}
+
+@keyframes esc-blink {
+  0% { color: #ff5252; }
+  50% { color: #fff; }
+  100% { color: #ff5252; }
+}
+.esc-blink {
+  animation: esc-blink 0.3s;
+}
+
 .modal-galeria {
   display: flex;
   gap: 8px;

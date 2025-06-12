@@ -197,6 +197,20 @@ function cerrarModalProducto() {
   document.getElementById('modalProducto').style.display = 'none';
 }
 
+// Cerrar el modal con la tecla Esc
+document.addEventListener('keydown', function(event) {
+  const modal = document.getElementById('modalProducto');
+  const cerrar = document.querySelector('.modal-cerrar');
+  if (modal && modal.style.display === 'flex' && event.key === 'Escape') {
+    // Efecto visual en la X
+    if (cerrar) {
+      cerrar.classList.add('esc-blink');
+      setTimeout(() => cerrar.classList.remove('esc-blink'), 300);
+    }
+    cerrarModalProducto();
+  }
+});
+
 // Buscar productos por texto
 function searchProduct() {
   const query = document.getElementById('searchInput').value.toLowerCase();
